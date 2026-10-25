@@ -1,0 +1,27 @@
+name: Balance browser tests
+description: Run the independent Playwright suite against an exact Balance application checkout.
+
+inputs:
+  app-root:
+    description: Absolute path to the checked-out balance-budget repository.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install test dependencies
+      shell: bash
+      run: npm ci
+      working-directory: ${{ github.action_path }}
+
+    - name: Install Chromium
+      shell: bash
+      run: npx playwright install --with-deps chromium
+      working-directory: ${{ github.action_path }}
+
+    - name: Run Playwright tests
+      shell: bash
+      env:
+        BALANCE_APP_ROOT: ${{ inputs.app-root }}
+      run: npm test
+      working-directory: ${{ github.action_path }}
