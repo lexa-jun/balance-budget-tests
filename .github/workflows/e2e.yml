@@ -1,0 +1,49 @@
+name: Balance E2E tests
+
+on:
+  workflow_call:
+    inputs:
+      app_repository:
+        description: Application repository in OWNER/REPO form.
+        required: true
+        type: string
+      app_ref:
+        description: Exact application commit SHA to test.
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    name: Playwright E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out the application commit
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.app_repository }}
+          ref: ${{ inputs.app_ref }}
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Run independent browser tests
+        uses: lexa-jun/balance-budget-tests@72cd6914baee4c5ff158fe17d2803f1927f0146f
+        with:
+          app-root: ${{ github.workspace }}
+
+      - name: Upload Playwright diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: balance-playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
