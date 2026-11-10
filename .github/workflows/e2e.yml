@@ -33,7 +33,7 @@ jobs:
           node-version: 24
 
       - name: Run independent browser tests
-        uses: lexa-jun/balance-budget-tests@72cd6914baee4c5ff158fe17d2803f1927f0146f
+        uses: lexa-jun/balance-budget-tests@b22e74f8e97c1251f378411f1752ef5ebf3fc326
         with:
           app-root: ${{ github.workspace }}
 
