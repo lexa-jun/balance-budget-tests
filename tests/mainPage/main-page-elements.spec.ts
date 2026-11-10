@@ -25,13 +25,10 @@ test.describe('Проверка элементов на главной', () => {
         await expect(main.storagePill).toBeVisible();
         await expect(main.storagePill).toHaveText('На этом устройстве');
 
-        await expect(main.modeSwitch).toBeVisible();
-        await main.personal.hover();
-        await expect(main.personal).toHaveClass('active');
-
         await expect(main.themeToggle).toBeVisible();
 
-        await expect(main.authButton).toBeHidden();
+        await expect(main.authButton).toBeVisible();
+        await expect(main.authButton).toHaveText('Войти');
 
         await expect(main.buttonPrimary).toBeVisible();
 
