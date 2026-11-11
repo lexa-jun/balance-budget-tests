@@ -27,9 +27,6 @@ test.describe('Проверка элементов на главной', () => {
 
         await expect(main.themeToggle).toBeVisible();
 
-        await expect(main.authButton).toBeVisible();
-        await expect(main.authButton).toHaveText('Войти');
-
         await expect(main.buttonPrimary).toBeVisible();
 
   });

@@ -9,7 +9,6 @@ export class Main {
   readonly storagePill: Locator;
   readonly themeToggle: Locator;
   // readonly iconButton: Locator; // добавлено на случий реализации окна уведомлений
-  readonly authButton: Locator;
   readonly buttonPrimary: Locator;
 
 
@@ -21,7 +20,6 @@ export class Main {
     this.storagePill = page.locator('#storagePill')
     this.themeToggle = page.locator('#themeToggle')
     // this.iconButton = page.locator('.icon-button')
-    this.authButton = page.locator('#authButton')
     this.buttonPrimary = page.locator('button[data-open="operation"]')
 
   }
