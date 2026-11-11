@@ -16,6 +16,7 @@ export default defineConfig({
   outputDir: resolve(appRoot, 'test-results'),
   use: {
     baseURL: 'http://127.0.0.1:4173',
+    timezoneId: 'Europe/Moscow',
     trace: 'on-first-retry',
   },
   projects: [
